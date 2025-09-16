@@ -144,34 +144,49 @@
       );
     }
 
-    function ProfileCard() {
-      return (
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl">
-          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-500/20 blur-2xl"></div>
-          <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-blue-400/20 blur-2xl"></div>
-          <div className="relative">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm text-white/70">Ubicación</p>
-                <p className="font-semibold">{DATA.location}</p>
-              </div>
-              <span className="rounded-full bg-emerald-500/20 text-emerald-200 text-xs px-3 py-1 border border-emerald-300/30">BI · ML</span>
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <InfoItem label="Email" value={DATA.email} />
-              <InfoItem label="Teléfono" value={DATA.phone} />
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {["Administración","Análisis de Datos","Power BI / Python","Toma de decisiones"].map((chip) => (
-                <span key={chip} className="text-xs bg-white/10 border border-white/10 rounded-full px-3 py-1 text-white/90">
-                  {chip}
-                </span>
-              ))}
+function ProfileCard() {
+  return (
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl">
+      <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-500/20 blur-2xl"></div>
+      <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-blue-400/20 blur-2xl"></div>
+      <div className="relative">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-4">
+            {DATA.avatar && (
+              <img
+                src={DATA.avatar}
+                alt={`Foto de ${DATA.name}`}
+                loading="lazy"
+                className="h-20 w-20 rounded-full object-cover ring-2 ring-emerald-400/50"
+              />
+            )}
+            <div>
+              <p className="text-sm text-white/70">Ubicación</p>
+              <p className="font-semibold">{DATA.location}</p>
             </div>
           </div>
+          <span className="rounded-full bg-emerald-500/20 text-emerald-200 text-xs px-3 py-1 border border-emerald-300/30">
+            BI · ML
+          </span>
         </div>
-      );
-    }
+
+        <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+          <InfoItem label="Email" value={DATA.email} />
+          <InfoItem label="Teléfono" value={DATA.phone} />
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {["Administración","Análisis de Datos","Power BI / Python","Toma de decisiones"].map((chip) => (
+            <span key={chip} className="text-xs bg-white/10 border border-white/10 rounded-full px-3 py-1 text-white/90">
+              {chip}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
     function InfoItem({ label, value }) {
       return (
